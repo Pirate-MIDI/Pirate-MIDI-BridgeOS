@@ -2,6 +2,7 @@
 Forum for reporting bugs &amp; issues in Bridge6 or Bridge4 firmware - open for public contributions
 ### (for Desktop app bugs, please use [This Separate Page](www.piratemidi.com))
 
+
 Click "issues" and browse to make sure your issue is not already documented.  
 
 ![image](https://user-images.githubusercontent.com/59382082/121623750-9d2f1f80-cab3-11eb-8a53-a752afbb7109.png)
