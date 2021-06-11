@@ -1,5 +1,5 @@
 # Bridge6 & Bridge4
-Forum for reporting bugs &amp; Issues - Open to Public
+Forum for reporting bugs &amp; issues in Bridge6 or Bridge4 firmware - openf or public contributions
 
 Click "issues" and browse to make sure your issue is not already documented.  
 
