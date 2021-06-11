@@ -1,5 +1,6 @@
 # Bridge6 & Bridge4
-Forum for reporting bugs &amp; issues in Bridge6 or Bridge4 firmware - openf or public contributions
+Forum for reporting bugs &amp; issues in Bridge6 or Bridge4 firmware - open for public contributions
+### (for Desktop app bugs, please use THIS SEPARATE PAGE)
 
 Click "issues" and browse to make sure your issue is not already documented.  
 
