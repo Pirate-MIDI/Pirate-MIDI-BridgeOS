@@ -1,6 +1,5 @@
 # Pirate MIDI Bug Tracking
 Forum for reporting bugs &amp; issues in Pirate MIDI devices - open for public contributions
-### (for Desktop app bugs, please use [This Separate Page](www.piratemidi.com))
 
 
 Click "issues" and browse to make sure your issue is not already documented.  
