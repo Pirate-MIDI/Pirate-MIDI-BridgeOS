@@ -1,5 +1,5 @@
-# Bridge6 & Bridge4
-Forum for reporting bugs &amp; issues in Bridge6 or Bridge4 firmware - open for public contributions
+# Pirate MIDI Bug Tracking
+Forum for reporting bugs &amp; issues in Pirate MIDI devices - open for public contributions
 ### (for Desktop app bugs, please use [This Separate Page](www.piratemidi.com))
 
 
