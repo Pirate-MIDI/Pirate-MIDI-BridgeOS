@@ -1,7 +1,7 @@
 # Pirate MIDI Bug Tracking
 Forum for reporting bugs &amp; issues in Pirate MIDI devices - open for public contributions
 
-Public access beta firmware and community is available in our Slack channel[URL](https://join.slack.com/t/piratemidi/shared_invite/zt-18puulc2t-nElrkk3JVu1qwHsovK9iog)
+Public access beta firmware and community is available in our [Slack channel](https://join.slack.com/t/piratemidi/shared_invite/zt-18puulc2t-nElrkk3JVu1qwHsovK9iog).
 
 Click "issues" and browse to make sure your issue is not already documented. Duplicated issues may be merged/removed.
 
