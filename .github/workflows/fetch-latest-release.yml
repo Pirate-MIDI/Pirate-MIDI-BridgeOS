@@ -6,4 +6,12 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Request Release
+        id: myRequest
+        run: |
+          curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest
+      - name: Show Response
+        run: echo ${{ steps.myRequest.outputs.response }}
