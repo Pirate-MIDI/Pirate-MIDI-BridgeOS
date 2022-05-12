@@ -1,2 +1,9 @@
 on:
   repository_dispatch:
+    types:
+    - released
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: my-step
