@@ -1,7 +1,7 @@
 on:
   repository_dispatch:
     types:
-    - released
+    - release
 jobs:
   my-job:
     runs-on: ubuntu-latest
