@@ -8,6 +8,9 @@ jobs:
       NEW_RELEASE_NAME: none
     runs-on: ubuntu-latest
     steps:
+      - name: Enable Echo
+        run: |
+          ::echo::on
       - name: Request Release
         id: myRequest
         run: |
@@ -15,6 +18,11 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest 
+      - name: Echo Variables
+        env:
+          NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.response.name }}
+        run: |
+          echo "${{ NEW_RELEASE_NAME }}"
       - name: Create Mirror Release
         id: createRelease
         env:
