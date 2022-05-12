@@ -18,7 +18,7 @@ jobs:
       - name: Create Mirror Release
         id: createRelease
         env:
-          NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.name }}
+          NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.response.name }}
         run: |
           curl \
           -X POST \
