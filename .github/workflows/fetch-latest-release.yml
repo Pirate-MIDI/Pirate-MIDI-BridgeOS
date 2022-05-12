@@ -1,3 +1,2 @@
 on:
   repository_dispatch:
-    types: [release]
