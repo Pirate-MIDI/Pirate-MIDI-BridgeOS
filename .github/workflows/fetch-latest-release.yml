@@ -15,9 +15,10 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest 
-          NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.name }}
       - name: Create Mirror Release
         id: createRelease
+        env:
+          NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.name }}
         run: |
           curl \
           -X POST \
