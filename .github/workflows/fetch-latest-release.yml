@@ -27,10 +27,11 @@ jobs:
           filename: 'release.json'
           prefix: release
       - name: Filter and Assign Variables
-        run: jq '(.body)|=(split("\r\n")|join("<br/>"))' release.json && echo $env.release_body
+        #run: jq '(.body)|=(split("\r\n")|join("<br/>"))' release.json && echo $env.release_body
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
           NEW_RELEASE_BODY: "${{env.release_body}}"
+        run: echo $NEW_RELEASE_NAME && echo $NEW_RELEASE_BODY
       - name: Echo Variables
         run: echo $env.release_body
       - name: Create Mirror Release
@@ -44,5 +45,5 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"'"${{env.NEW_RELEASE_BODY}}"'","draft":false,"prerelease":false,"generate_release_notes":false}'
+          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.NEW_RELEASE_BODY}}","draft":false,"prerelease":false,"generate_release_notes":false}'
 
