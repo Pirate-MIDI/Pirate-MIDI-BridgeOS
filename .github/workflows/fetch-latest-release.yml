@@ -16,23 +16,32 @@ jobs:
       - name: Request Release
         id: myRequest
         run: |
-          echo "::set-output name=ip-address::$(curl -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest)"
-      - name: step-2
-        run: echo "${{ steps.myRequest.outputs.ip-address }}"
-      - name: step-3
-        run: |
-          echo '{
-            "ip-address": "${{ steps.myRequest.outputs.ip-address }}"
-          }'
+          curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
+        
+      - name: JSON to Variables
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'release.json'
+          prefix: release
+      - name: Filter and Assign Variables
+        run: jq '(.body)|=(split("\r")|join(""))' release.json && echo $env.release_body
+        env:
+          NEW_RELEASE_NAME: "${{env.release_name}}"
+          NEW_RELEASE_BODY: "${{env.release_body}}"
       - name: Echo Variables
         run: echo $env.release_body
       - name: Create Mirror Release
         id: createRelease
+        env:
+          NEW_RELEASE_NAME: "${{env.release_name}}"
+          NEW_RELEASE_BODY: "${{toJson(env.release_body)}}"
         run: |
-          curl \
+          jq '(.body)|=(split("\r")|join(""))' release.json && echo $NEW_RELEASE_NAME && echo $NEW_RELEASE_BODY && curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.NEW_RELEASE_BODY}}","draft":false,"prerelease":false,"generate_release_notes":false}'
-
+          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.release_body}}","draft":false,"prerelease":false,"generate_release_notes":false}'
