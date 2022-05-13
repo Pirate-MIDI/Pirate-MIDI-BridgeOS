@@ -16,7 +16,9 @@ jobs:
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest 
       - name: Echo Variables
-        run: echo "{NEW_RELEASE_NAME}={steps.myRequest.outputs.responsename}" >> $GITHUB_ENV
+        run: echo "{NEW_RELEASE_NAME}={steps.myRequest.outputs.responsename}" >> $GITHUB_ENV |
+          echo $NEW_RELEASE_NAME
+        
       - name: Create Mirror Release
         id: createRelease
         env:
