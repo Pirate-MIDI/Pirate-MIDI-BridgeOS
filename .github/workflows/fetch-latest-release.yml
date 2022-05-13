@@ -16,11 +16,17 @@ jobs:
       - name: Request Release
         id: myRequest
         run: |
-          curl \
+          echo "::set-output name=ip-address::$(curl \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
-        
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json)"
+      - name: step-2
+        run: echo "${{ steps.myRequest.outputs.ip-address }}"
+      - name: step-3
+        run: |
+          echo '{
+            "ip-address": "${{ steps.myRequest.outputs.ip-address }}"
+          }'
       - name: JSON to Variables
         uses: antifree/json-to-variables@v1.0.1
         with:
