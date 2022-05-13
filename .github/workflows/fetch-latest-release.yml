@@ -8,8 +8,6 @@ env:
   
 jobs:
   my-job:
-    env:
-      NEW_RELEASE_NAME: none
     runs-on: ubuntu-latest
     steps:
       - name: Request Release
