@@ -19,7 +19,7 @@ jobs:
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
       - name: Echo Variables     
         env:
-          NEW_RELEASE_NAME: ${{release.json | jq .url}}
+          NEW_RELEASE_NAME: ${ jq '.url' release.json }}
         run: echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
