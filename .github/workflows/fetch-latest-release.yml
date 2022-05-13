@@ -2,6 +2,10 @@ on:
   repository_dispatch:
     types:
     - release
+    
+env:
+  NEW_RELEASE_NAME: TestName
+  
 jobs:
   my-job:
     env:
@@ -15,11 +19,8 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest 
-      - name: Assign Variables
-        run: echo "NEW_RELEASE_NAME = {"TestName"}" >> $GITHUB_ENV
       - name: Echo Variables
-        run:
-          echo $NEW_RELEASE_NAME
+        run: echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
         id: createRelease
