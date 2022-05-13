@@ -32,12 +32,12 @@ jobs:
           #NEW_RELEASE_BODY: "${{env.release_body}}"
         run: echo $NEW_RELEASE_BODY
       - name: Filter Variables
-        run: jq '(.body)|=(split("\n")|join(""))' release.json
+        run: jq '(.body)|=(split("\n")|join(""))' release.json && echo $NEW_RELEASE_BODY
       - name: Create Mirror Release
         id: createRelease
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
-          #NEW_RELEASE_BODY: "${{env.release_body}}"
+          NEW_RELEASE_BODY: "${{env.release_body}}"
         run: |
           curl \
           -X POST \
