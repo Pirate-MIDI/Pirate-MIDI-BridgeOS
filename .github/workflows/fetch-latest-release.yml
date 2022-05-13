@@ -27,8 +27,9 @@ jobs:
           filename: 'release.json'
           prefix: release
       - name: Filter and Assign Variables
-        run: jq '(.body)|=(split("\r")|join("<br/>"))' release.json && jq '(.body)|=(split("\n")|join(""))' release.json
-        #run: echo $env.release_body
+        run: jq '(.body)|=(split("\r")|join("<br/>"))' release.json
+      - name: Second Filter Pass 
+        run: jq '(.body)|=(split("\n")|join(""))' release.json
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
           NEW_RELEASE_BODY: "${{env.release_body}}"
