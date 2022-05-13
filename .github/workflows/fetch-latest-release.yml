@@ -35,11 +35,12 @@ jobs:
         id: createRelease
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
+          NEW_RELEASE_BODY: "${{env.release_body}}"
         run: |
           curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"Description of the release","draft":false,"prerelease":false,"generate_release_notes":false}'
+          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.NEW_RELEASE_BODY}}","draft":false,"prerelease":false,"generate_release_notes":false}'
 
