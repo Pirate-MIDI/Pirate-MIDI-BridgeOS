@@ -29,7 +29,8 @@ jobs:
       - name: Echo Variables
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
-        run: echo $NEW_RELEASE_NAME
+          NEW_RELEASE_BODY: "${{env.release_body}}"
+        run: echo $NEW_RELEASE_BODY
         
       - name: Create Mirror Release
         id: createRelease
@@ -42,5 +43,5 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.release_body}}","draft":false,"prerelease":false,"generate_release_notes":false}'
+          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":"${{env.NEW_RELEASE_BODY}}","draft":false,"prerelease":false,"generate_release_notes":false}'
 
