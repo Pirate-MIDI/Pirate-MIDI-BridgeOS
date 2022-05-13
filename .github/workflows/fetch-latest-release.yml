@@ -8,9 +8,6 @@ jobs:
       NEW_RELEASE_NAME: none
     runs-on: ubuntu-latest
     steps:
-      - name: Enable Echo
-        run: |
-          ::echo::on
       - name: Request Release
         id: myRequest
         run: |
