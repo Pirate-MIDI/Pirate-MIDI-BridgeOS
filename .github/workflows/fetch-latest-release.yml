@@ -23,8 +23,10 @@ jobs:
         with:
           filename: 'release.json'
           prefix: release
-      - name: Echo Variables     
-        run: echo "${{env.release_url}}"
+      - name: Echo Variables
+        env:
+          NEW_RELEASE_NAME: "${{env.release_url}}"
+        run: echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
         id: createRelease
