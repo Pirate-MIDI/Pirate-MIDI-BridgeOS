@@ -17,8 +17,10 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
-      - name: Echo Variables          
-        run: cat release.json | jq .url
+      - name: Echo Variables     
+        env:
+          NEW_RELEASE_NAME: ${{cat release.json | jq .url}}
+        run: echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
         id: createRelease
