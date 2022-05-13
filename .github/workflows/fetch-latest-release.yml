@@ -29,7 +29,7 @@ jobs:
       - name: Create Mirror Release
         id: createRelease
         run: |
-          jq '(.body)|=(split("\r")|join(""))' release.json && echo $NEW_RELEASE_NAME && echo $NEW_RELEASE_BODY && curl \
+          curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
