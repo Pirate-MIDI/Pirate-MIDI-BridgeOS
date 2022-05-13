@@ -33,6 +33,8 @@ jobs:
         
       - name: Create Mirror Release
         id: createRelease
+        env:
+          NEW_RELEASE_NAME: "${{env.release_name}}"
         run: |
           curl \
           -X POST \
