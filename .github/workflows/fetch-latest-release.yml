@@ -37,7 +37,7 @@ jobs:
         id: createRelease
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
-          NEW_RELEASE_BODY: "${{env.release_body}}"
+          #NEW_RELEASE_BODY: "${{env.release_body}}"
         run: |
           curl \
           -X POST \
