@@ -5,6 +5,9 @@ on:
     
 env:
   NEW_RELEASE_NAME: TestName
+  NEW_RELEASE_BODY: TestBody
+  NEW_RELEASE_TAG_NAME: v0
+  
   
 jobs:
   my-job:
@@ -25,7 +28,7 @@ jobs:
           prefix: release
       - name: Echo Variables
         env:
-          NEW_RELEASE_NAME: "${{env.release_url}}"
+          NEW_RELEASE_NAME: "${{env.release_name}}"
         run: echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
