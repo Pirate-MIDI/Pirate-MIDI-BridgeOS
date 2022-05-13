@@ -19,7 +19,7 @@ jobs:
         run: echo = "TestName"
       - name: Echo Variables
         run:
-          echo "$NEW_RELEASE_NAME"
+          echo $NEW_RELEASE_NAME
         
       - name: Create Mirror Release
         id: createRelease
