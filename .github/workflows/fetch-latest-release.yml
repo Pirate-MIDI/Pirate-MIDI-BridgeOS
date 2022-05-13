@@ -21,7 +21,7 @@ jobs:
         env:
           NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.name }}
           
-        run: echo ${{ steps.myRequest.outputs.name }}
+        run: echo "${{ steps.myRequest.outputs.name }}"
         
       - name: Create Mirror Release
         id: createRelease
