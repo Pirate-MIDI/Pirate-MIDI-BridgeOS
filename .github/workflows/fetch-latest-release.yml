@@ -13,16 +13,12 @@ jobs:
       - name: Request Release
         id: myRequest
         run: |
-          NEW_RELEASE_NAME = $(curl \
+          curl \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest) 
-          echo "response from curl= $NEW_RELEASE_NAME"
-      #- name: Echo Variables
-        #env:
-          #NEW_RELEASE_NAME: ${{ steps.myRequest.outputs.response[0] }}
-          
-        #run: echo "${{ fromJson(steps.myRequest.response.outputs[0]) }}"
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
+      - name: Echo Variables          
+        run: $ cat release.json | jq .url
         
       - name: Create Mirror Release
         id: createRelease
