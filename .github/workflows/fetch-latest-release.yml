@@ -26,13 +26,13 @@ jobs:
         with:
           filename: 'release.json'
           prefix: release
-      - name: Echo Variables
-        env:
-          NEW_RELEASE_NAME: "${{env.release_name}}"
-          #NEW_RELEASE_BODY: "${{env.release_body}}"
-        run: echo $NEW_RELEASE_BODY
       - name: Filter Variables
         run: jq '(.body)|=(split("\r")|join("<br/>"))' release.json && echo $env.release_body
+        env:
+          NEW_RELEASE_NAME: "${{env.release_name}}"
+          NEW_RELEASE_BODY: "${{env.release_body}}"
+      - name: Echo Variables
+        run: echo $env.release_body
       - name: Create Mirror Release
         id: createRelease
         env:
