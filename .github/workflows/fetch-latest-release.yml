@@ -59,8 +59,8 @@ jobs:
           -X POST \
           --header "Content-Type:application/bin" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          - '{"name":"bridge6_v1.0.3.1.bin","label":"v0.0.1"}'
-          "${{ env.release_upload_url}}"
+          "${{ env.release_upload_url}}" \
+          -d '{"name":"bridge6_v1.0.3.1.bin","label":"v0.0.1"}'
         #uses: actions/upload-release-asset@v1
         #env:
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
