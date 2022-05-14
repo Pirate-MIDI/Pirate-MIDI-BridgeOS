@@ -27,7 +27,7 @@ jobs:
           repo: 'Pirate-MIDI/Bridge'
           version: 'tags/v1.0.3'
           file: 'bridge6_v1.0.3.1.bin'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_TOKEN }}
       - name: JSON to Variables
         uses: antifree/json-to-variables@v1.0.1
         with:
