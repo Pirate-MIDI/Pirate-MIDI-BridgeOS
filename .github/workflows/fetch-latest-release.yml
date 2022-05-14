@@ -54,20 +54,20 @@ jobs:
           -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}'
       - name: Upload Release Asset
         id: uploadReleaseAsset 
-        run: |
-          curl -v \
-          -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H 'Content-Type: application/octet-stream' \
-          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets \
-          --data-urlencode 'name=bridge6_v1.0.3.1.bin'
+        #run: |
+          #curl -v \
+          #-X POST \
+          #-H "Accept: application/vnd.github.v3+json" \
+          #-H 'Content-Type: application/octet-stream' \
+          #-H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          #https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets?name=bridge6_v1.0.3.1.bin,label= \
+          #--data-urlencode 'name=bridge6_v1.0.3.1.bin'
           
-        #uses: actions/upload-release-asset@v1
-        #env:
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #with:
-          #upload_url: "https://uploads.github.com/repos/Pirate-MIDI/Bridge/releases/57338898/assets" # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          #asset_path: bridge6_v1.0.3.1.bin
-          #asset_content_type: application/bin
-          #asset_name: bridge6_v1.0.3.1.bin
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: "https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets" # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./bridge6_v1.0.3.1.bin
+          asset_content_type: application/octet-stream
+          asset_name: bridge6_v1.0.3.1.bin
