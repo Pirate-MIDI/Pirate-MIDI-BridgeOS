@@ -60,7 +60,12 @@ jobs:
           --header "Content-Type:application/bin" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           --data-binary bridge6_v1.0.3.1.bin \
-          "https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/57338898/assets?name=bridge6_v1.0.3.1.bin"
+          "https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/v1.0.3/assets?name=bridge6_v1.0.3.1.bin"
+        
+      - uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: ${{ env.release_upload_url}}
+          asset_path: bridge6_v1.0.3.1.bin
         #uses: actions/upload-release-asset@v1
         #env:
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
