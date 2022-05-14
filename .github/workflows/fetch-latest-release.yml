@@ -69,6 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: "https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets" # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./bridge6_v1.0.3.1.bin
+          asset_path: ./bridge6_v1_0_3_1.bin
           asset_content_type: application/octet-stream
           asset_name: bridge6_v1_0_3_1.bin
