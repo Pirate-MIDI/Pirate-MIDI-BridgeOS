@@ -59,9 +59,9 @@ jobs:
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          "${{ env.release_upload_url}}" \
-          -d "bridge6_v1.0.3.1.bin" \
-          -d "v0.0.1"
+          "${{env.release_upload_url}}" \
+          -d 'name="bridge6_v1.0.3.1.bin"' \
+          -d 'label="v0.0.1"'
         #uses: actions/upload-release-asset@v1
         #env:
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
