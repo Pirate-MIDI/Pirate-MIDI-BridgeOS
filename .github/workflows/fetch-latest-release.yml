@@ -61,7 +61,8 @@ jobs:
           -H 'Content-Type: application/octet-stream' \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets \
-          -d 'name=bridge6_v1.0.3.1.bin'
+          --data-urlencode 'name=bridge6_v1.0.3.1.bin'
+          
         #uses: actions/upload-release-asset@v1
         #env:
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
