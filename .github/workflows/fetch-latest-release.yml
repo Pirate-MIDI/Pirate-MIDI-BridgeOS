@@ -59,7 +59,7 @@ jobs:
           -X POST \
           --header "Content-Type:application/bin" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          --data-binary bridge6_v1.0.3.1.bin \
+          - '{"name":"bridge6_v1.0.3.1.bin","label":v0.0.1"}'
           "${{ env.release_upload_url}}"
         #uses: actions/upload-release-asset@v1
         #env:
