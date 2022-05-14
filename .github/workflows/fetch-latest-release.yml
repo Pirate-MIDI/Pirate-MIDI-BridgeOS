@@ -58,7 +58,7 @@ jobs:
           curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
-          -H 'Content-Type: application/octet-stream'
+          -H 'Content-Type: application/octet-stream' \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           "${{env.release_upload_url}}" \
           -d 'name="bridge6_v1.0.3.1.bin"','label="v0.0.1"'
