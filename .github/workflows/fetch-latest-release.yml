@@ -20,7 +20,12 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
-        
+      - name: Download Release Assets
+        id: assetDownload
+        run: |
+          curl \
+          -H "Accept: application/octet-stream" \
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/assets/bridge6_v1.0.3.1.bin
       - name: JSON to Variables
         uses: antifree/json-to-variables@v1.0.1
         with:
@@ -45,3 +50,13 @@ jobs:
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
           -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}'
+      - name: Upload Release Asset
+        id: uploadReleaseAsset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.release_upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ./bridge6_v1.0.3.1.bin
+          asset_name: bridge6_v1.0.3.1.bin
+          asset_content_type: application/bin
