@@ -55,7 +55,7 @@ jobs:
       - name: Upload Release Asset
         id: uploadReleaseAsset 
         run: |
-          curl -v\
+          curl -v \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H 'Content-Type: application/octet-stream' \
