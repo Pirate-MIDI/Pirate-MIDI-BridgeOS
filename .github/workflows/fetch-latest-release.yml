@@ -54,11 +54,18 @@ jobs:
           -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}'
       - name: Upload Release Asset
         id: uploadReleaseAsset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: "https://uploads.github.com/repos/Pirate-MIDI/Bridge/releases/57338898/assets" # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: bridge6_v1.0.3.1.bin
-          asset_name: bridge6_v1.0.3.1.bin
-          asset_content_type: application/bin
+        run: |
+          curl \
+          -X POST \
+          --header "Content-Type:application/bin" \
+          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          --data-binary bridge6_v1.0.3.1.bin \
+          "https://uploads.github.com/repos/Pirate-MIDI/Bridge/releases/57338898/assets?name=bridge6_v1.0.3.1.bin"
+        #uses: actions/upload-release-asset@v1
+        #env:
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #with:
+          #upload_url: "https://uploads.github.com/repos/Pirate-MIDI/Bridge/releases/57338898/assets" # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          #asset_path: bridge6_v1.0.3.1.bin
+          #asset_content_type: application/bin
+          #asset_name: bridge6_v1.0.3.1.bin
