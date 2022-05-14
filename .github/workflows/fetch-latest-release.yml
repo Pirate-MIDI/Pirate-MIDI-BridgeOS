@@ -60,7 +60,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H 'Content-Type: application/octet-stream' \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          "${{env.release_upload_url}}" \
+          ${{env.release_upload_url}} \
           -d 'name="bridge6_v1.0.3.1.bin"','label="v0.0.1"'
         #uses: actions/upload-release-asset@v1
         #env:
