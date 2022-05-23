@@ -57,7 +57,7 @@ jobs:
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
           NEW_RELEASE_BODY: "${{toJson(env.release_body)}}"
-          NEW_RELEASE_TAG: "${{env.release_tag_name}}"
+          NEW_RELEASE_TAG_NAME: "${{env.release_tag_name}}"
         run: |
           curl \
           -X POST \
