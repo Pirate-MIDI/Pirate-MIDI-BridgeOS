@@ -51,8 +51,7 @@ jobs:
         run: |
           for file in bridge*; do \
           mv "$file" "${bridge/}" \
-          done \ 
-          && ls
+          done && ls
       - name: Create Mirror Release
         id: createRelease
         env:
