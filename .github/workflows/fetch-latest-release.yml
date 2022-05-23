@@ -57,19 +57,22 @@ jobs:
         env:
           NEW_RELEASE_NAME: "${{env.release_name}}"
           NEW_RELEASE_BODY: "${{toJson(env.release_body)}}"
+          NEW_RELEASE_TAG: "${{env.release_tag_name}}"
         run: |
           curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
+          -d '{"tag_name":"{{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
       
       - name: Upload Release Asset
-        id: uploadReleaseAsset 
+        id: uploadReleaseAsset
+        env:
+          NEW_RELEASE_TAG: "${{env.release_tag_name}}"
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'assets/*.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
-          release-tag: 'v0.0.1'
+          release-tag: "${{env.NEW_RELEASE_TAG}}"
         
