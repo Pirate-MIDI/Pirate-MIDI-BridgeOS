@@ -74,5 +74,5 @@ jobs:
         with:
           files: 'assets/*.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
-          release-tag: "${{env.NEW_RELEASE_TAG}}"
+          release-tag: '${{env.NEW_RELEASE_TAG}}'
         
