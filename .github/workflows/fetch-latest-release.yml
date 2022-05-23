@@ -22,6 +22,13 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
+      - name: Request All Releases
+        id: requestAllReleases
+        run: |
+          curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases
       - name: JSON to Variables
         uses: antifree/json-to-variables@v1.0.1
         with:
