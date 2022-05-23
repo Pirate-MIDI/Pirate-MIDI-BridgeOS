@@ -48,7 +48,7 @@ jobs:
           regex: true
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Echo Downloaded Assets
-        run: rename 's/^(.{5})//' && ls
+        run: sudo apt install rename && rename 's/^(.{5})//' && ls
       - name: Create Mirror Release
         id: createRelease
         env:
