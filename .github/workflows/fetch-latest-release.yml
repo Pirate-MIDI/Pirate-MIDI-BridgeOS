@@ -56,7 +56,7 @@ jobs:
         run: mv bridge6_v1.0.3.1.bin bridge6_v1_0_3_1.bin && ls
       - name: Release Asset
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/v0.0.1')
         with:
           files: bridge6_v1_0_3_1.bin
       - name: Upload Release Asset
