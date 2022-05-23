@@ -44,7 +44,7 @@ jobs:
         with:
           repo: 'Pirate-MIDI/Bridge'
           version: 'tags/${{env.NEW_RELEASE_TAG_NAME}}'
-          file: "\"
+          file: '\'
           regex: true
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Echo Downloaded Assets
