@@ -40,10 +40,32 @@ jobs:
           NEW_RELEASE_BODY: "${{env.release_body}}"
       - name: Echo Variables
         run: echo $env.release_body
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Create Mirror Release
+        id: createRelease
+        env:
+          NEW_RELEASE_NAME: "${{env.release_name}}"
+          NEW_RELEASE_BODY: "${{toJson(env.release_body)}}"
+        run: |
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
+          -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
+      - name: Rename Asset
+        run: mv bridge6_v1.0.3.1.bin bridge6_v1_0_3_1.bin && ls
+      - name: Upload Release Asset
+        id: uploadReleaseAsset 
+        #run: |
+          #curl -v \
+          #-X POST \
+          #-H "Accept: application/vnd.github.v3+json" \
+          #-H 'Content-Type: application/octet-stream' \
+          #-H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
+          #https://uploads.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases/66868792/assets?name=bridge6_v1.0.3.1.bin,label= \
+          #--data-urlencode 'name=bridge6_v1.0.3.1.bin'
+      - uses: AButler/upload-release-assets@v2.0
         with:
-          files: bridge6_v1.0.3.1.bin
+          files: './bridge6_v1.0.3.1.bin'
+          repo-token: ${{ secrets.RELEASE_TOKEN }}
+          release-tag: 'v0.0.1'
