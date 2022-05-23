@@ -49,9 +49,9 @@ jobs:
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Echo Downloaded Assets
         run: |
-          for file in bridge*; do |
-          mv "$file" "${bridge/}" |
-          done | 
+          for file in bridge*; do \
+          mv "$file" "${bridge/}" \
+          done \ 
           && ls
       - name: Create Mirror Release
         id: createRelease
