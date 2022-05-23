@@ -54,7 +54,7 @@ jobs:
           -d '{"tag_name":"v0.0.1","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
       - name: Release Asset
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/v0.0.1')
+        if: startsWith(github.ref, 'refs/tags/v0')
         with:
           files: bridge6_v1.0.3.1.bin
       - name: Upload Release Asset
