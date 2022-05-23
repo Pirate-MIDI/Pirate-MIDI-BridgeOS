@@ -36,6 +36,8 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/${{env.NEW_RELEASE_ID}}/assets
+      - name: Create New Assets Folder
+        run: mkdir ./assets
       - name: Download Release Assets
         id: downloadAssets
         env:
@@ -46,10 +48,10 @@ jobs:
           version: 'tags/${{env.NEW_RELEASE_TAG_NAME}}'
           file: "bridge"
           regex: true
+          target: 'assets/'
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Echo Downloaded Assets
-        run: |
-          for filename in ./*; do mv "./$filename" "./$(echo "$filename" | sed -e 's/bridge//g')";  done && ls
+        run: ls assets
       - name: Create Mirror Release
         id: createRelease
         env:
