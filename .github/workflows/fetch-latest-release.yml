@@ -58,7 +58,7 @@ jobs:
         id: uploadReleaseAsset 
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: './bridge6_v1.0.3.1.bin'
+          files: './bridge6_v1_0_3_1.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
           release-tag: 'v0.0.1'
         #run: |
