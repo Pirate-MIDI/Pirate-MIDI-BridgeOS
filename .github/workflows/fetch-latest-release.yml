@@ -44,11 +44,11 @@ jobs:
         with:
           repo: 'Pirate-MIDI/Bridge'
           version: 'tags/${{env.NEW_RELEASE_TAG_NAME}}'
-          file: "bridge"
+          file: "*"
           regex: true
           token: ${{ secrets.RELEASE_TOKEN }}
       - name: Echo Downloaded Assets
-        run: sudo apt install rename && rename 's/^(.{5})//' && ls
+        run: ls
       - name: Create Mirror Release
         id: createRelease
         env:
