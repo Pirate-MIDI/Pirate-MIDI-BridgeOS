@@ -47,12 +47,8 @@ jobs:
           file: "bridge.*\\.bin"
           regex: true
           token: ${{ secrets.RELEASE_TOKEN }}
-      - name: Download Release Assets 2
-        id: downloadAssets2
-        run: |
-          curl \
-          -H "Accept: application/octet-stream" \
-          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/assets/ASSET_ID
+      - name: Echo Downloaded Assets
+        run: ls
       - name: Create Mirror Release
         id: createRelease
         env:
