@@ -64,7 +64,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"{{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
+          -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
       
       - name: Upload Release Asset
         id: uploadReleaseAsset
