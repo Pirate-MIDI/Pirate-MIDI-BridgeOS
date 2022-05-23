@@ -6,6 +6,7 @@ on:
 env:
   NEW_RELEASE_NAME: TestName
   NEW_RELEASE_BODY: TestBody
+  NEW_RELEASE_ID: 1
   NEW_RELEASE_TAG_NAME: v0
   
   
@@ -25,14 +26,10 @@ jobs:
         with:
           filename: 'release.json'
           prefix: release
-      - name: Filter and Assign Variables
-        run: echo $env.release_body
-        env:
-          NEW_RELEASE_NAME: "${{env.release_name}}"
-          NEW_RELEASE_BODY: "${{env.release_body}}"
-          NEW_RELEASE_ID: "${{env.release_id}}"
       - name: List Assets
         id: listAssets
+        env:
+          NEW_RELEASE_ID: "${{env.release_id}}"
         run: |
           curl \
           -H "Accept: application/vnd.github.v3+json" \
