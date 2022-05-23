@@ -20,13 +20,13 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest -o release.json
-      - name: Request Assets
-        id: requestAssets
+      - name: List Assets
+        id: listAssets
         run: |
           curl \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
-          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/latest/assets
+          https://api.github.com/repos/Pirate-MIDI/Bridge/releases/${{ steps.requestRelease.outputs.id}}/assets
       - name: Download Release Assets
         id: assetDownload
         uses: dsaltares/fetch-gh-release-asset@master
