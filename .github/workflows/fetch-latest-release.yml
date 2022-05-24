@@ -9,8 +9,6 @@ env:
   NEW_RELEASE_ID: 1
   NEW_RELEASE_TAG_NAME: v0
   NEW_ASSET_ID: 1
-  NEW_RELEASE_IS_ALPHA: False
-  
   
 jobs:
   publishRelease:
@@ -29,11 +27,6 @@ jobs:
         with:
           filename: 'release.json'
           prefix: release
-          
-      - name: Check Alpha Release
-        run: if [[ "${{env.release_0_name}}" == *"alpha"* ]]; then \
-          echo "Alpha Version Found." && echo "{NEW_RELEASE_IS_ALPHA}={True}" >> $GITHUB_ENV \
-          fi
           
       - name: Create New Assets Folder
         run: mkdir ./assets
@@ -55,6 +48,7 @@ jobs:
         run: ls assets
         
       - name: Create Mirror Release
+        if: contains(env.release_0_name, 'alpha') != true
         id: createRelease
         env:
           NEW_RELEASE_NAME: "${{env.release_0_name}}"
@@ -69,6 +63,7 @@ jobs:
           -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
       
       - name: Upload Release Asset
+        if: contains(env.release_0_name, 'alpha') != true
         id: uploadReleaseAsset
         env:
           NEW_RELEASE_TAG: "${{env.release_0_tag_name}}"
