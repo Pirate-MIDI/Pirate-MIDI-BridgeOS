@@ -32,6 +32,7 @@ jobs:
         run: mkdir ./assets
         
       - name: Download Release Assets
+        if: contains(env.release_0_name, 'alpha') != true
         id: downloadAssets
         env:
           NEW_RELEASE_TAG_NAME: "${{env.release_0_tag_name}}"
