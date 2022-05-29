@@ -73,7 +73,8 @@ jobs:
           files: 'assets/*.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
           release-tag: '${{env.NEW_RELEASE_TAG}}'
-      - name: Deploy to Staging server
+      - name: Deploy to Release server
+        if: contains(env.release_0_name, 'alpha') != true && contains(env.release_0_name, 'beta') != true
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
