@@ -63,7 +63,7 @@ jobs:
         with:
           files: 'assets/*.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
-          release-tag: '${{env.release_0_tag_name}}'
+          release-tag: "${{env.newRelease_tag_name}}"
           
       - name: Deploy to Release server
         if: contains(env.release_0_name, 'alpha') != true && contains(env.release_0_name, 'beta') != true
