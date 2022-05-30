@@ -77,15 +77,12 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
       
-      - name: Post Beta Announcement
+      - name: Slack Post Beta Announcement
         if: contains(env.release_0_name, 'beta')
-        id: slackBeta
+        id: slackAnnouncementBeta
         uses: slackapi/slack-github-action@v1.19.0
         with:
-          # Slack channel id, channel name, or user id to post message.
-          # See also: https://api.slack.com/methods/chat.postMessage#channels
           channel-id: 'C03HC5W3M7F'
-          # For posting a rich message using Block Kit
           payload: |
             {
               "blocks": [
@@ -114,4 +111,13 @@ jobs:
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        
+      
+      - name: Slack Change Beta Topic
+        if: contains(env.release_0_name, 'beta')
+        id: slackTopicBeta
+        run: |
+          curl \
+          -X POST \
+          -H "Authorization: token ${{ secrets.SLACK_BOT_TOKEN }}" \
+          --data "channel=C03HC5W3M7F&topic=${{ env.newRelease_name }} Bridge Firmware"
+          https://slack.com/api/conversations.setTopic
