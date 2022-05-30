@@ -98,7 +98,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "text",
-                    "text": "${{ toJson(env.newRelease_body) }}"
+                    "text": ${{ toJson(env.newRelease_body) }}
                   }
                 }
               ]
