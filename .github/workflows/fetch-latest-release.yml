@@ -100,7 +100,7 @@ jobs:
                 "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*<${{ env.newRelease_html_url }}|Get it here>*\n"
+                    "text": "*Get it <${{ env.newRelease_html_url }}|here>*\n"
                   }
                 },
                 {
