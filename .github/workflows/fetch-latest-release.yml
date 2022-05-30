@@ -86,7 +86,7 @@ jobs:
           EXCLUDE: "/dist/, /node_modules/"
       
       - name: Post Alpha Announcement
-        if: contains(env.release_0_name, 'alpha') != true
+        if: contains(env.release_0_name, 'alpha')
         id: slackAlpha
         uses: slackapi/slack-github-action@v1.19.0
         with:
