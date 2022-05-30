@@ -23,7 +23,7 @@ jobs:
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Bridge/releases -o release.json
           
-      - name: JSON to Variables
+      - name: JSON to Variables Release
         uses: antifree/json-to-variables@v1.0.1
         with:
           filename: 'release.json'
@@ -57,12 +57,18 @@ jobs:
           NEW_RELEASE_BODY: "${{toJson(env.release_0_body)}}"
           NEW_RELEASE_TAG_NAME: "${{env.release_0_tag_name}}"
         run: |
-          echo "::set-output name=newRelease::$(curl \
+          curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}')" 
+          -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' -o newRelease.json
+      
+      - name: JSON to Variables New Release
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'newRelease.json'
+          prefix: newRelease
       
       - name: Upload Release Asset
         if: contains(env.release_0_name, 'alpha') != true
@@ -104,7 +110,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "${{ steps.createRelease.outputs.newRelease.html_url }}"
+                    "${{ env.newRelease_html_url }}"
                   }
                 }
               ]
