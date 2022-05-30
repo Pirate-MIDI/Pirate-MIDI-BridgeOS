@@ -97,7 +97,7 @@ jobs:
                   },
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
+                    "type": "text",
                     "text": "${{ env.newRelease_body }}"
                   }
                 }
