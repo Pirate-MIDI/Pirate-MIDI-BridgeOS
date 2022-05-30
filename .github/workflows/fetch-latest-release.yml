@@ -87,9 +87,9 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
       
-      - name: Post Alpha Announcement
-        if: contains(env.release_0_name, 'alpha')
-        id: slackAlpha
+      - name: Post Beta Announcement
+        if: contains(env.release_0_name, 'beta')
+        id: slackBeta
         uses: slackapi/slack-github-action@v1.19.0
         with:
           # Slack channel id, channel name, or user id to post message.
