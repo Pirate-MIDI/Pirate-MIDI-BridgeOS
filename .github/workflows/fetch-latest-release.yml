@@ -109,8 +109,8 @@ jobs:
                 {
                   "type": "section",
                   "text": {
-                    "type": "mrkdwn",
-                    "${{ env.newRelease_html_url }}"
+                    "type": "text",
+                    "<${{ env.newRelease_html_url }}>"
                   }
                 }
               ]
