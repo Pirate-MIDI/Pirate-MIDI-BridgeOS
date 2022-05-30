@@ -94,7 +94,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "[Check out the new release ${{ env.newRelease_name }}]("${{ env.newRelease_html_url }}")"
+                    "text": "<${{ env.newRelease_html_url }}>|Check out the new release ${{ env.newRelease_name }}"
                   }
                 }
               ]
