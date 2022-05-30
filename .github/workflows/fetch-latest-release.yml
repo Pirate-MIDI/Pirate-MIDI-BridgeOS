@@ -85,6 +85,7 @@ jobs:
           channel-id: 'C03HC5W3M7F'
           payload: |
             {
+              "text": "Bridge ${{ env.newRelease_name }} is now available!"
               "blocks": [
                 {
                   "type": "header",
