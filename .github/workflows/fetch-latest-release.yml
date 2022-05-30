@@ -93,7 +93,14 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": "Check out the new release <${{ env.newRelease_html_url }}|${{ env.newRelease_name }}>"
+                    "text": "Bridge ${{ env.newRelease_name }} is now available!"
+                  }
+                },
+                {
+                "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*<${{ env.newRelease_html_url }}|Get it here>*\n"
                   }
                 },
                 {
