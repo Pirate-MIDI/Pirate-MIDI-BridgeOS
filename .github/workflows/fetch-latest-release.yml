@@ -92,7 +92,7 @@ jobs:
                 {
                   "type": "header",
                   "text": {
-                    "type": "mrkdwn",
+                    "type": "plain_text",
                     "text": "*Check out the new release <${{ env.newRelease_html_url }}|${{ env.newRelease_name }}>*"
                   },
                   "type": "section",
