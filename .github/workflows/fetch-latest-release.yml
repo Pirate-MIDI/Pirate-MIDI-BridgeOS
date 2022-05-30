@@ -97,7 +97,7 @@ jobs:
                   },
                   "type": "section",
                   "text": {
-                    "type": "text",
+                    "type": "mrkdwn",
                     "text": ${{ toJson(env.newRelease_body) }}
                   }
                 }
