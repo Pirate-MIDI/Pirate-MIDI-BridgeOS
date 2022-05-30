@@ -118,6 +118,6 @@ jobs:
         run: |
           curl \
           -X POST \
-          -H "Authorization: token ${{ secrets.SLACK_BOT_TOKEN }}" \
+          -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
           --data "channel=C03HC5W3M7F&topic=${{ env.newRelease_name }} Bridge Firmware" \
           https://slack.com/api/conversations.setTopic
