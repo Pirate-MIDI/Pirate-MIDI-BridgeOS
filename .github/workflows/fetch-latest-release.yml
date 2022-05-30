@@ -9,6 +9,7 @@ env:
   NEW_RELEASE_ID: 1
   NEW_RELEASE_TAG_NAME: v0
   NEW_ASSET_ID: 1
+  NEW_RELEASE_URL: none
   
 jobs:
   publishRelease:
@@ -56,12 +57,12 @@ jobs:
           NEW_RELEASE_BODY: "${{toJson(env.release_0_body)}}"
           NEW_RELEASE_TAG_NAME: "${{env.release_0_tag_name}}"
         run: |
-          curl \
+          echo "::set-output name=newRelease::$(curl \
           -X POST \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}' 
+          -d '{"tag_name":"${{env.NEW_RELEASE_TAG_NAME}}","target_commitish":"main","name":"${{env.NEW_RELEASE_NAME}}","body":${{env.NEW_RELEASE_BODY}},"draft":false,"prerelease":false,"generate_release_notes":false}')" 
       
       - name: Upload Release Asset
         if: contains(env.release_0_name, 'alpha') != true
@@ -73,6 +74,7 @@ jobs:
           files: 'assets/*.bin'
           repo-token: ${{ secrets.RELEASE_TOKEN }}
           release-tag: '${{env.NEW_RELEASE_TAG}}'
+          
       - name: Deploy to Release server
         if: contains(env.release_0_name, 'alpha') != true && contains(env.release_0_name, 'beta') != true
         uses: easingthemes/ssh-deploy@main
@@ -102,7 +104,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "${{ steps.createRelease.outputs.html_url }}"
+                    "${{ steps.createRelease.outputs.newRelease.html_url }}"
                   }
                 }
               ]
