@@ -48,7 +48,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -H "Authorization: token ${{ secrets.RELEASE_TOKEN }}" \
           https://api.github.com/repos/Pirate-MIDI/Pirate-MIDI-Features-Bug-Tracking/releases \
-          -d '{"tag_name":"${{env.release_0_tag_name}}","target_commitish":"main","name":"${{env.release_0_name}}","body":${{toJson(env.release_0_body)}},"draft":false,"prerelease":false,"generate_release_notes":false}' -o newRelease.json
+          -d '{"tag_name":"${{env.release_0_tag_name}}","target_commitish":"main","name":"${{env.release_0_name}}","body":${{toJson(env.release_0_body)}},"draft":false,"prerelease":${{env.release_0_prerelease}},"generate_release_notes":false}' -o newRelease.json
       
       - name: JSON to Variables New Release
         uses: antifree/json-to-variables@v1.0.1
