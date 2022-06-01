@@ -82,7 +82,7 @@ jobs:
         id: slackAnnouncementBeta
         uses: slackapi/slack-github-action@v1.19.0
         with:
-          channel-id: 'C03HC5W3M7F'
+          channel-id: 'C03EBJLG886'
           payload: |
             {
               "text": "Bridge ${{ env.newRelease_name }} is now available!"
@@ -120,5 +120,5 @@ jobs:
           curl \
           -X POST \
           -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
-          --data "channel=C03HC5W3M7F&topic=${{ env.newRelease_name }} Bridge Firmware" \
+          --data "channel=C03EBJLG886&topic=${{ env.newRelease_name }} Bridge Firmware" \
           https://slack.com/api/conversations.setTopic
