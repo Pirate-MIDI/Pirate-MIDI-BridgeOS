@@ -40,6 +40,7 @@ jobs:
         run: ls assets
         
       - name: Create Mirror Release
+        if: contains(env.release_0_name, 'alpha') != true
         id: createRelease
         run: |
           curl \
@@ -56,6 +57,7 @@ jobs:
           prefix: newRelease
       
       - name: Upload Release Asset
+        if: contains(env.release_0_name, 'alpha') != true
         id: uploadReleaseAsset
         uses: AButler/upload-release-assets@v2.0
         with:
