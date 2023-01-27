@@ -14,6 +14,6 @@ If your issue is not documented, you can add a new issue.
 
 **Please follow the template provided** to give us all the information we need to accurately and reliably reproduce your issue. If there is not enough information, we can't nail down the issue. 
 
-![image](https://user-images.githubusercontent.com/59382082/121623926-ef704080-cab3-11eb-84a1-e617a3504597.png)
+![image](https://user-images.githubusercontent.com/59382082/215039116-30713b0f-0574-49a3-ad46-5a41dc96e11d.png)
 
 Simon and Sam will be able to interact with your comments and clarify for more information. 
