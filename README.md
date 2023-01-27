@@ -6,7 +6,7 @@ Public access beta firmware and community is available in our Discord server alo
 ## Bug Tracking
 Click "issues" and browse to make sure your issue is not already documented. Duplicated issues may be merged/removed.
 
-![image](https://user-images.githubusercontent.com/59382082/121623750-9d2f1f80-cab3-11eb-8a53-a752afbb7109.png)
+![image](https://user-images.githubusercontent.com/59382082/215038666-faaf52b6-5cc5-4433-a46a-1500afc6058b.png)
 
 If your issue is already documented, you can add any new information to that thread as a comment. 
 
