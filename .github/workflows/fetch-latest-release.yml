@@ -24,14 +24,26 @@ jobs:
       - name: Create New Assets Folder
         run: mkdir ./assets
         
-      - name: Download Release Assets
+      - name: Download Bridge Release Assets
         if: contains(env.release_0_name, 'alpha') != true
-        id: downloadAssets
+        id: downloadBridgeAssets
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           repo: 'Pirate-MIDI/Bridge'
           version: 'tags/${{env.release_0_tag_name}}'
           file: "bridge"
+          regex: true
+          target: 'assets/'
+          token: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
+          
+      - name: Download Aero Release Assets
+        if: contains(env.release_0_name, 'alpha') != true
+        id: downloadAeroAssets
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'Pirate-MIDI/Bridge'
+          version: 'tags/${{env.release_0_tag_name}}'
+          file: "aero"
           regex: true
           target: 'assets/'
           token: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
